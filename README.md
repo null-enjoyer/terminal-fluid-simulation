@@ -3,9 +3,10 @@
 A real-time, particle-based fluid simulation that runs entirely in your terminal. This project implements Smoothed
 Particle Hydrodynamics (SPH) using Go and tcell for rendering.
 
-## Showcase (video, click)
+## Showcase
 
-[![Showcase](https://img.youtube.com/vi/WzcDjDTCxHY/0.jpg)](https://youtu.be/WzcDjDTCxHY)
+![Showcase](https://github.com/null-enjoyer/terminal-fluid-simulation/blob/content/assets/showcase.gif)
+[Youtube Full Video](https://youtu.be/WzcDjDTCxHY)
 
 ## Features
 
