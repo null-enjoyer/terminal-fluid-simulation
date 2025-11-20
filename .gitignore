@@ -1,0 +1,8 @@
+# IDEA
+.idea
+
+# builds
+*.exe
+*.exe~
+*.dll
+*.out
