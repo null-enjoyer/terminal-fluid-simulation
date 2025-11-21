@@ -128,7 +128,7 @@ func NewDefaultConfig() *AppConfig {
 				},
 			},
 			{
-				Name: "Tea",
+				Name: "Oil",
 				Colors: []string{
 					"#8B7D6B", "#CDB38B", "#8B4500", "#382201", "#110900",
 				},
@@ -137,6 +137,36 @@ func NewDefaultConfig() *AppConfig {
 				Name: "Beer",
 				Colors: []string{
 					"#FFFFFF", "#FFF44F", "#FFC300", "#D98200", "#6E3B00",
+				},
+			},
+			{
+				Name: "Blood",
+				Colors: []string{
+					"#FF4D4D", "#E60000", "#990000", "#4D0000", "#1A0000",
+				},
+			},
+			{
+				Name: "Slime",
+				Colors: []string{
+					"#EAFF00", "#B3FF00", "#47E600", "#188F00", "#0A3300",
+				},
+			},
+			{
+				Name: "Matrix",
+				Colors: []string{
+					"#CCFFCC", "#66FF66", "#00FF00", "#008F11", "#003B00",
+				},
+			},
+			{
+				Name: "Nebula",
+				Colors: []string{
+					"#FFB6C1", "#FF69B4", "#9400D3", "#4B0082", "#100020",
+				},
+			},
+			{
+				Name: "Glacier",
+				Colors: []string{
+					"#F0FFFF", "#AFEEEE", "#00CED1", "#008B8B", "#003333",
 				},
 			},
 		},
