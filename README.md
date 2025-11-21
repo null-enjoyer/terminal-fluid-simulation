@@ -5,7 +5,7 @@ Particle Hydrodynamics (SPH) using Go and tcell for rendering.
 
 ## Showcase
 
-![Showcase](https://github.com/null-enjoyer/terminal-fluid-simulation/blob/content/content/showcase-magma.gif)
+![Showcase](https://github.com/null-enjoyer/terminal-fluid-simulation/blob/content/content/showcase.gif)
 [Youtube Full Video](https://www.youtube.com/watch?v=eaHcGegRT9U)
 
 ## Features
