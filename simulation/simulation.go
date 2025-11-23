@@ -33,6 +33,7 @@ type Simulation struct {
 	Config     config.PhysicsConfig
 
 	NumCPU int
+	Mu     sync.RWMutex
 }
 
 func NewSimulation(termW, termH int, cfg config.PhysicsConfig) *Simulation {
@@ -57,7 +58,6 @@ func (s *Simulation) ParallelFor(action func(start, end int)) {
 		return
 	}
 
-	// if too few particles, run serial to avoid scheduler overhead
 	if count < 1000 {
 		action(0, count)
 		return
@@ -86,6 +86,9 @@ func (s *Simulation) ParallelFor(action func(start, end int)) {
 }
 
 func (s *Simulation) Resize(termW, termH int) {
+	s.Mu.Lock()
+	defer s.Mu.Unlock()
+
 	if termW <= SidebarWidth {
 		termW = SidebarWidth + 10
 	}
@@ -199,6 +202,9 @@ func (s *Simulation) Run() {
 }
 
 func (s *Simulation) Spawn(x, y float64) {
+	s.Mu.RLock()
+	defer s.Mu.RUnlock()
+
 	ix, iy := int(x), int(y)
 	if uint(ix) < uint(s.Width) && uint(iy) < uint(s.Height) {
 		if s.Walls[ix+iy*s.Width] {
@@ -223,6 +229,9 @@ func (s *Simulation) Spawn(x, y float64) {
 }
 
 func (s *Simulation) SetWall(x, y int, isWall bool) {
+	s.Mu.Lock()
+	defer s.Mu.Unlock()
+
 	if uint(x) < uint(s.Width) && uint(y) < uint(s.Height) {
 		s.Walls[x+y*s.Width] = isWall
 	}

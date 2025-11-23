@@ -28,6 +28,7 @@ func (a *App) Render() {
 	}
 
 	// mark walls
+	a.Sim.Mu.RLock()
 	wallLen := len(a.Sim.Walls)
 	if wallLen == a.SimW*a.SimH {
 		for x := 0; x < a.SimW; x++ {
@@ -38,6 +39,7 @@ func (a *App) Render() {
 			}
 		}
 	}
+	a.Sim.Mu.RUnlock()
 
 	// add particles to grid
 	for _, p := range a.CurrentParticles {
@@ -108,6 +110,10 @@ func (a *App) Render() {
 
 func (a *App) DrawMenu() {
 	_, h := a.Screen.Size()
+	if h <= 0 {
+		return
+	}
+
 	for y := 0; y < h; y++ {
 		a.Screen.SetContent(simulation.SidebarWidth-1, y, '│', nil, a.StyleBorder)
 	}
@@ -130,12 +136,20 @@ func (a *App) DrawMenu() {
 		case "preset_enum":
 			valStr = a.ActivePresetName
 		case "float":
-			valStr = fmt.Sprintf(item.Fmt, *item.Val.(*float64))
+			if item.Val != nil {
+				valStr = fmt.Sprintf(item.Fmt, *item.Val.(*float64))
+			}
 		case "int":
-			valStr = fmt.Sprintf(item.Fmt, *item.Val.(*int))
+			if item.Val != nil {
+				valStr = fmt.Sprintf(item.Fmt, *item.Val.(*int))
+			}
 		case "enum":
-			idx := *item.Val.(*int)
-			valStr = fmt.Sprintf(item.Fmt, a.Palettes[idx].Name)
+			if item.Val != nil {
+				idx := *item.Val.(*int)
+				if idx >= 0 && idx < len(a.Palettes) {
+					valStr = fmt.Sprintf(item.Fmt, a.Palettes[idx].Name)
+				}
+			}
 		case "action":
 			valStr = item.Fmt
 		}
