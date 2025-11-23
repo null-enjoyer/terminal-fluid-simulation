@@ -26,6 +26,7 @@ type App struct {
 
 	ConfigPath string
 	UIConfig   config.PhysicsConfig
+	Version    string
 
 	MenuItems   []ui.MenuItem
 	PresetNames []string
@@ -64,7 +65,7 @@ type App struct {
 	LastRenderTime time.Duration
 }
 
-func New(configPath string) *App {
+func New(configPath string, version string) *App {
 	var appConfig *config.AppConfig
 	var err error
 
@@ -106,6 +107,7 @@ func New(configPath string) *App {
 		Palettes:         palettes,
 		ConfigPath:       configPath,
 		UIConfig:         sim.Config,
+		Version:          version,
 		CursorX:          float64((w - simulation.SidebarWidth) / 2),
 		CursorY:          float64(10),
 		ActivePresetName: "Default",

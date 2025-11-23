@@ -110,6 +110,7 @@ func (a *App) Render() {
 
 func (a *App) DrawMenu() {
 	_, h := a.Screen.Size()
+
 	if h <= 0 {
 		return
 	}
@@ -198,6 +199,10 @@ func (a *App) DrawMenu() {
 	ui.DrawText(a.Screen, 2, yPos, a.StyleMenuBg, fmt.Sprintf("Physics: %v", a.LastPhysTime.Round(time.Microsecond)))
 	yPos++
 	ui.DrawText(a.Screen, 2, yPos, a.StyleMenuBg, fmt.Sprintf("Render: %v", a.LastRenderTime.Round(time.Microsecond)))
+
+	if a.Version != "dev" {
+		ui.DrawText(a.Screen, 2, h-2, a.StyleMenuBg, fmt.Sprintf("v%s", a.Version))
+	}
 
 	if a.InputMode {
 		ui.DrawInputOverlay(a.Screen, "Save Preset As:", a.InputText)
